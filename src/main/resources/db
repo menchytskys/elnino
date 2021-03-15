@@ -1,0 +1,34 @@
+CREATE DATABASE elnino
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    CONNECTION LIMIT = -1;
+
+CREATE SCHEMA elnino
+AUTHORIZATION postgres;
+
+CREATE TABLE elnino.data_set
+(
+    obs integer NOT NULL,
+    year smallint NOT NULL,
+    month smallint NOT NULL,
+    day smallint NOT NULL,
+    date date NOT NULL,
+    latitude numeric NOT NULL,
+    longitude numeric NOT NULL,
+    zon_winds numeric NOT NULL,
+    mer_winds numeric NOT NULL,
+    humidity numeric NOT NULL,
+    air_temp numeric NOT NULL,
+    s_s_temp numeric NOT NULL
+);
+
+ALTER TABLE elnino.data_set
+    OWNER to postgres;
+
+
+ALTER TABLE "data_set"
+	ADD "version" SMALLINT NULL DEFAULT NULL;
+COMMENT ON COLUMN "data_set"."version" IS '';
+
+TRUNCATE TABLE data_set;

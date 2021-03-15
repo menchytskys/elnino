@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -42,6 +43,9 @@ public class DataRow {
     private double airTemp;
     @Column(name = "s_s_temp", nullable = false)
     private double seaSurfaceTemp;
+
+    @Version
+    private Short version;
 
     public long getObs() {
         return obs;

@@ -7,8 +7,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +19,8 @@ public class DataReaderImpl implements DataReader {
     @Override
     public List<String> read() {
 
-//        LocalTime before = LocalTime.now();
         List<String> list = new ArrayList<>();
-        try (FileInputStream fis = new FileInputStream(FILE_TEST);
+        try (FileInputStream fis = new FileInputStream(FILE);
              InputStreamReader isr = new InputStreamReader(fis, StandardCharsets.UTF_8);
              BufferedReader reader = new BufferedReader(isr)
         ) {
@@ -35,10 +32,6 @@ public class DataReaderImpl implements DataReader {
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        LocalTime after = LocalTime.now();
-//        Duration duration = Duration.between(before, after);
-//        System.out.println("BufferedReader result = " + duration);
-//        System.out.println("list size " + list.size());
 
         return list;
     }

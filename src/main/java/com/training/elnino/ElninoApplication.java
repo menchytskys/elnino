@@ -27,6 +27,8 @@ public class ElninoApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		List<String> data = dataReader.read();
 
-		service.saveDataRow(data);
+//		service.saveDataRow(data);
+
+		service.saveDataRowBatch(data);
 	}
 }
