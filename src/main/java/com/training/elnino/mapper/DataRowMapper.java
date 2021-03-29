@@ -1,7 +1,6 @@
-package com.training.elnino.maper;
+package com.training.elnino.mapper;
 
 import com.training.elnino.model.DataRow;
-import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -9,11 +8,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@Component
 public class DataRowMapper {
 
     private static final String SPLITTER = " ";
-    private static final String DATE_FORMAT = "yMMdd";
+
+    public String getDateFormat() {
+        return dateFormat;
+    }
+
+    public void setDateFormat(String dateFormat) {
+        this.dateFormat = dateFormat;
+    }
+
+    private String dateFormat = "yMMdd";
 
     public DataRow mapToDataRow(String row) {
         DataRow dataRow = new DataRow();
@@ -25,7 +32,7 @@ public class DataRowMapper {
         dataRow.setYear(Integer.parseInt(collect.get(1)));
         dataRow.setMonth(Integer.parseInt(collect.get(2)));
         dataRow.setDay(Integer.parseInt(collect.get(3)));
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(dateFormat);
         LocalDate dateTime = LocalDate.parse(collect.get(4), formatter);
         dataRow.setDate(dateTime);
         dataRow.setLatitude(Double.parseDouble(collect.get(5)));

@@ -1,5 +1,6 @@
 package com.training.elnino.reader;
 
+import com.training.elnino.exception.DataReaderInputSourceException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
@@ -14,12 +15,16 @@ import java.util.List;
 import java.util.function.Consumer;
 
 @Component
-public class ChunkableDataReaderImpl implements ChunkableDataReader<String> {
+public class ChunkableDataReaderImpl implements ChunkableDataReader<String, String> {
 
     private static final Logger LOG = LogManager.getLogger(ChunkableDataReaderImpl.class);
 
     @Override
-    public void read(String source, int chunkSize, Consumer<List<String>> consumer) {
+    public void read(String source, int chunkSize, Consumer<List<String>> consumer) throws DataReaderInputSourceException {
+        if (source == null || chunkSize == 0) {
+            throw new DataReaderInputSourceException("Source is null or chunkSize = 0");
+        }
+
         List<String> list = new ArrayList<>();
 
         try (FileInputStream fis = new FileInputStream(source);
@@ -31,6 +36,7 @@ public class ChunkableDataReaderImpl implements ChunkableDataReader<String> {
                 if (list.size() == chunkSize) {
                     consumer.accept(list);
                     list.clear();
+                    list.add(str);
                 } else {
                     list.add(str);
                 }
