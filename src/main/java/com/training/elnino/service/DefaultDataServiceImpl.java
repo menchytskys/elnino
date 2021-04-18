@@ -2,14 +2,15 @@ package com.training.elnino.service;
 
 import com.training.elnino.dao.DataRepository;
 import com.training.elnino.mapper.DataRowMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.training.elnino.model.DataRow;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class DefaultDataServiceImpl implements DataService {
 
     private final DataRepository dataRepository;
-
     private final DataRowMapper dataRowMapper;
 
     public DefaultDataServiceImpl(DataRepository dataRepository, DataRowMapper dataRowMapper) {
@@ -23,5 +24,10 @@ public class DefaultDataServiceImpl implements DataService {
         for (String row : dataList) {
             dataRepository.save(dataRowMapper.mapToDataRow(row));
         }
+    }
+
+    @Override
+    public List<DataRow> getAllDataRows() {
+        return dataRepository.findAll();
     }
 }

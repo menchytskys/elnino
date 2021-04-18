@@ -34,20 +34,21 @@ public class ChunkableDataReaderImpl implements ChunkableDataReader<String, Stri
             String str;
             while ((str = reader.readLine()) != null) {
                 if (list.size() == chunkSize) {
-                    consumer.accept(list);
-                    list.clear();
-                    list.add(str);
-                } else {
-                    list.add(str);
+                    acceptAndClear(consumer, list);
                 }
+                list.add(str);
             }
             if (!list.isEmpty()) {
-                consumer.accept(list);
-                list.clear();
+                acceptAndClear(consumer, list);
             }
         } catch (IOException e) {
             LOG.error(e.getMessage(), e);
         }
+    }
+
+    private void acceptAndClear(Consumer<List<String>> consumer, List<String> list) {
+        consumer.accept(list);
+        list.clear();
     }
 
 }
