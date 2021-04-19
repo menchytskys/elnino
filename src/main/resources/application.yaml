@@ -7,6 +7,10 @@ spring:
           batch_size: 30
     show-sql: true
   datasource:
+#    url: jdbc:h2:mem:db;DB_CLOSE_DELAY=-1
+#    driver-class-name: org.h2.Driver
+#    username: sa
+#    password: sa
     url: jdbc:postgresql://localhost:5432/elnino
     username: postgres
     password: 1234
@@ -14,7 +18,8 @@ spring:
       minimum-idle: 10
       maximum-pool-size: 100
     driver-class-name: org.postgresql.Driver
-
-
-
-serviceName: DefaultDataServiceImpl
+  h2:
+    console:
+      enabled: true
+  profiles:
+    active: batchDataService

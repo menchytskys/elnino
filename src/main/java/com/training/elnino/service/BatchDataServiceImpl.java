@@ -3,12 +3,15 @@ package com.training.elnino.service;
 import com.training.elnino.dao.DataRepository;
 import com.training.elnino.mapper.DataRowMapper;
 import com.training.elnino.model.DataRow;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
+@Profile("batchDataService")
 public class BatchDataServiceImpl implements DataService {
 
     private final DataRepository dataRepository;
@@ -36,5 +39,10 @@ public class BatchDataServiceImpl implements DataService {
             dataRepository.saveAll(dataRows);
             dataRows.clear();
         }
+    }
+
+    @Override
+    public List<DataRow> getAllDataRows() {
+        return dataRepository.findAll();
     }
 }
