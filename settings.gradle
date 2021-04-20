@@ -1,1 +1,6 @@
 rootProject.name = 'elnino'
+
+include 'common'
+include 'cli'
+include 'web:web-api'
+include 'web:web-impl'
