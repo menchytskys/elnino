@@ -1,3 +1,18 @@
+plugins {
+    id 'application'
+    id 'org.springframework.boot' version '2.4.4'
+}
+
+application {
+    mainClass = 'com.training.elnino'
+}
+
+bootJar {
+    enabled = true
+}
+
+
 dependencies {
     implementation project(':common')
+    implementation 'org.springframework.boot:spring-boot-starter'
 }

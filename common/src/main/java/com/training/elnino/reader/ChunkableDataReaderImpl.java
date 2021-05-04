@@ -20,7 +20,7 @@ public class ChunkableDataReaderImpl implements ChunkableDataReader<String, Stri
     private static final Logger LOG = LogManager.getLogger(ChunkableDataReaderImpl.class);
 
     @Override
-    public void read(String source, int chunkSize, Consumer<List<String>> consumer) throws DataReaderInputSourceException {
+    public void read(String source, int chunkSize, Consumer<List<String>> consumer) {
         if (source == null || chunkSize == 0) {
             throw new DataReaderInputSourceException("Source is null or chunkSize = 0");
         }
