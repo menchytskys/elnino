@@ -1,6 +1,6 @@
 package com.training.elnino.exception;
 
-public class DataReaderInputSourceException extends Exception {
+public class DataReaderInputSourceException extends RuntimeException {
 
     public DataReaderInputSourceException() {
         this(null);
