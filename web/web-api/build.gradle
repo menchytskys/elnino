@@ -1,0 +1,14 @@
+plugins {
+    id 'application'
+    id 'org.springframework.boot' version '2.4.4'
+}
+
+application {
+    mainClass = 'com.training.elnino'
+}
+
+dependencies {
+    implementation project(':common')
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+}
